@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Carrusel con Texto Interactivo</title>
+<title>Carrusel interactivo</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -31,9 +31,8 @@
     object-fit: cover;
     top: 0; left: 0;
     opacity: 0;
-    transition: opacity 1.8s ease-in-out;
+    transition: opacity 2s ease-in-out;
   }
-
   .carousel img.active { opacity: 1; }
 
   /* CAPA DE TEXTO */
@@ -63,44 +62,24 @@
     line-height: 1.8em;
   }
 
-  .scroll-text p {
-    margin-bottom: 0.6em;
-  }
+  .scroll-text p { margin-bottom: 0.6em; }
+  .translation { font-style: italic; opacity: 0.85; }
 
-  .translation {
-    font-style: italic;
-    opacity: 0.85;
-  }
-
-  /* SCROLLBAR PERSONALIZADO */
-  .scroll-box::-webkit-scrollbar {
-    width: 6px;
-  }
+  /* SCROLLBAR */
+  .scroll-box::-webkit-scrollbar { width: 6px; }
   .scroll-box::-webkit-scrollbar-thumb {
     background: rgba(255,255,255,0.4);
     border-radius: 3px;
   }
 
   @media (max-width: 768px) {
-    .scroll-box {
-      width: 90%;
-      height: 80%;
-    }
-    .scroll-text {
-      font-size: clamp(0.85rem, 3vw, 1rem);
-      line-height: 1.6em;
-    }
+    .scroll-box { width: 90%; height: 80%; }
+    .scroll-text { font-size: clamp(0.85rem, 3vw, 1rem); line-height: 1.6em; }
   }
 
   @media (max-width: 480px) {
-    .scroll-box {
-      width: 95%;
-      height: 75%;
-    }
-    .scroll-text {
-      font-size: 0.9rem;
-      line-height: 1.5em;
-    }
+    .scroll-box { width: 95%; height: 75%; }
+    .scroll-text { font-size: 0.9rem; line-height: 1.5em; }
   }
 </style>
 </head>
@@ -119,10 +98,28 @@
     <img src="https://picsum.photos/id/1089/1920/1080">
   </div>
 
-  <!-- TEXTO INTERACTIVO -->
+  <!-- TEXTO -->
   <div class="overlay">
     <div class="scroll-box" id="scrollBox">
       <div class="scroll-text">
+        <p>Bienvenido a nuestro espacio visual, donde cada imagen cuenta una historia.</p>
+        <p class="translation">(Welcome to our visual space, where every image tells a story.)</p>
+
+        <p>Este carrusel infinito celebra la belleza del movimiento y la conexión.</p>
+        <p class="translation">(This infinite carousel celebrates the beauty of movement and connection.)</p>
+
+        <p>Mientras las imágenes fluyen detrás, el texto desciende suavemente, como el tiempo.</p>
+        <p class="translation">(While the images flow behind, the text drifts softly downward, like time itself.)</p>
+
+        <p>Aquí podrías incluir la presentación de tu proyecto o una reflexión artística.</p>
+        <p class="translation">(Here you could include your project’s introduction or an artistic reflection.)</p>
+
+        <p>Todo fluye, todo cambia, pero el mensaje permanece.</p>
+        <p class="translation">(Everything flows, everything changes, yet the message remains.)</p>
+
+        <p>Gracias por visitar esta muestra digital, donde imagen y palabra se encuentran.</p>
+        <p class="translation">(Thank you for visiting this digital showcase where image and word meet.)</p>
+
         <p>Bienvenido a nuestro espacio visual, donde cada imagen cuenta una historia.</p>
         <p class="translation">(Welcome to our visual space, where every image tells a story.)</p>
 
@@ -146,7 +143,7 @@
 
   <!-- SCRIPT -->
   <script>
-    // --- CARRUSEL ---
+    /* --- CARRUSEL --- */
     const images = document.querySelectorAll('.carousel img');
     let index = 0;
     function nextImage() {
@@ -154,39 +151,32 @@
       index = (index + 1) % images.length;
       images[index].classList.add('active');
     }
-    setInterval(nextImage, 4500);
+    setInterval(nextImage, 6500); // cada 7s
 
-    // --- AUTO SCROLL + CONTROL MANUAL ---
+    /* --- AUTO SCROLL CONTROLADO --- */
     const scrollBox = document.getElementById('scrollBox');
-    let autoScrollSpeed = 0.3; // velocidad (px por frame)
+    let autoScrollSpeed = 0.3;
     let isUserScrolling = false;
     let userScrollTimeout;
 
     function autoScroll() {
       if (!isUserScrolling) {
         scrollBox.scrollTop += autoScrollSpeed;
-        if (scrollBox.scrollTop >= scrollBox.scrollHeight - scrollBox.clientHeight) {
-          scrollBox.scrollTop = 0; // reinicia al inicio
-        }
+        if (scrollBox.scrollTop >= scrollBox.scrollHeight - scrollBox.clientHeight)
+          scrollBox.scrollTop = 0;
       }
       requestAnimationFrame(autoScroll);
     }
 
-    // Detecta interacción del usuario
-    scrollBox.addEventListener('wheel', () => {
+    function pauseAutoScroll() {
       isUserScrolling = true;
       clearTimeout(userScrollTimeout);
-      userScrollTimeout = setTimeout(() => (isUserScrolling = false), 2000);
-    });
+      userScrollTimeout = setTimeout(() => (isUserScrolling = false), 800); // vuelve rápido
+    }
 
-    scrollBox.addEventListener('touchstart', () => {
-      isUserScrolling = true;
-      clearTimeout(userScrollTimeout);
-    });
-
-    scrollBox.addEventListener('touchend', () => {
-      userScrollTimeout = setTimeout(() => (isUserScrolling = false), 2000);
-    });
+    scrollBox.addEventListener('wheel', pauseAutoScroll);
+    scrollBox.addEventListener('touchstart', pauseAutoScroll);
+    scrollBox.addEventListener('touchend', pauseAutoScroll);
 
     autoScroll();
   </script>
