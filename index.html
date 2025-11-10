@@ -52,7 +52,7 @@
     width: 80%;
     max-width: 800px;
     height: 85%;
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: hidden; /* 🔹 Oculta scroll horizontal */
     scroll-behavior: smooth;
     padding-right: 10px;
@@ -68,10 +68,13 @@
   .translation { font-style: italic; opacity: 0.85; }
 
   /* SCROLLBAR */
-  .scroll-box::-webkit-scrollbar { width: 6px; }
-  .scroll-box::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.4);
-    border-radius: 3px;
+  .scroll-box::-webkit-scrollbar {
+  width: 0; /* oculta la barra pero conserva el scroll */
+    background: transparent;
+  }
+  .scroll-box {
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE y Edge antiguos */
   }
 
   @media (max-width: 768px) {
@@ -173,7 +176,7 @@
     function pauseAutoScroll() {
       isUserScrolling = true;
       clearTimeout(userScrollTimeout);
-      userScrollTimeout = setTimeout(() => (isUserScrolling = false), 800);
+      userScrollTimeout = setTimeout(() => (isUserScrolling = false), 500);
     }
 
     scrollBox.addEventListener('wheel', pauseAutoScroll);
