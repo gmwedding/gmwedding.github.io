@@ -3,14 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Carrusel con Texto Scroll</title>
+<title>Carrusel con Traducción</title>
 <style>
   /* RESET */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
     height: 100%;
@@ -21,31 +17,27 @@
     background-color: #000;
   }
 
-  /* CARRUSEL A PANTALLA COMPLETA */
+  /* CARRUSEL */
   .carousel {
     position: fixed;
     top: 0; left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     overflow: hidden;
     z-index: 0;
   }
 
   .carousel img {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100%; height: 100%;
     object-fit: cover;
     top: 0; left: 0;
     opacity: 0;
     transition: opacity 1.8s ease-in-out;
   }
 
-  .carousel img.active {
-    opacity: 1;
-  }
+  .carousel img.active { opacity: 1; }
 
-  /* CAPA TRANSPARENTE CON TEXTO */
+  /* CAPA CON TEXTO */
   .overlay {
     position: relative;
     z-index: 2;
@@ -56,48 +48,46 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding: 2vh 5vw;
+    padding: 3vh 5vw;
   }
 
   .scroll-text {
     position: absolute;
     width: 80%;
     max-width: 800px;
-    text-align: justify;
-    animation: scrollText 40s linear infinite;
-    font-size: clamp(1rem, 2vw, 1.4rem);
+    text-align: center;
+    animation: scrollText 45s linear infinite;
+    font-size: clamp(0.9rem, 1.8vw, 1.2rem);
     line-height: 1.8em;
+  }
+
+  .scroll-text p {
+    margin-bottom: 0.6em;
+  }
+
+  .translation {
+    font-style: italic;
+    opacity: 0.85;
   }
 
   @keyframes scrollText {
     0% { top: 100%; }
-    100% { top: -160%; }
+    100% { top: -180%; }
   }
 
   /* RESPONSIVE */
-  @media (max-width: 1024px) {
-    .scroll-text {
-      width: 85%;
-      font-size: clamp(0.95rem, 2.5vw, 1.2rem);
-      line-height: 1.7em;
-    }
-  }
-
   @media (max-width: 768px) {
-    .overlay {
-      padding: 3vh 6vw;
-    }
     .scroll-text {
       width: 90%;
-      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      font-size: clamp(0.85rem, 3vw, 1rem);
       line-height: 1.6em;
     }
   }
 
   @media (max-width: 480px) {
     .scroll-text {
-      width: 92%;
-      font-size: 0.95rem;
+      width: 95%;
+      font-size: 0.9rem;
       line-height: 1.5em;
     }
   }
@@ -118,24 +108,26 @@
     <img src="https://picsum.photos/id/1089/1920/1080" alt="Imagen 10">
   </div>
 
-  <!-- TEXTO -->
+  <!-- TEXTO CON TRADUCCIÓN INTERCALADA -->
   <div class="overlay">
     <div class="scroll-text">
-      <p>
-        Bienvenido a nuestro espacio visual, donde cada imagen cuenta una historia.
-        Este carrusel infinito celebra la belleza del movimiento, la luz y la conexión
-        entre la naturaleza y la emoción.
-        <br><br>
-        Mientras las imágenes fluyen detrás, este texto se desliza suavemente hacia abajo,
-        simbolizando el paso del tiempo y la continuidad.
-        <br><br>
-        Aquí podrías incluir una descripción de tu proyecto, una introducción artística
-        o incluso una declaración poética.
-        <br><br>
-        Todo fluye, todo cambia, pero el mensaje permanece.
-        <br><br>
-        Gracias por visitar esta muestra digital, una ventana donde imagen y palabra se encuentran.
-      </p>
+      <p>Bienvenido a nuestro espacio visual, donde cada imagen cuenta una historia.</p>
+      <p class="translation">(Welcome to our visual space, where every image tells a story.)</p>
+
+      <p>Este carrusel infinito celebra la belleza del movimiento y la conexión.</p>
+      <p class="translation">(This infinite carousel celebrates the beauty of movement and connection.)</p>
+
+      <p>Mientras las imágenes fluyen detrás, el texto desciende suavemente, como el tiempo.</p>
+      <p class="translation">(While the images flow behind, the text drifts softly downward, like time itself.)</p>
+
+      <p>Aquí podrías incluir la presentación de tu proyecto o una reflexión artística.</p>
+      <p class="translation">(Here you could include your project’s introduction or an artistic reflection.)</p>
+
+      <p>Todo fluye, todo cambia, pero el mensaje permanece.</p>
+      <p class="translation">(Everything flows, everything changes, yet the message remains.)</p>
+
+      <p>Gracias por visitar esta muestra digital, donde imagen y palabra se encuentran.</p>
+      <p class="translation">(Thank you for visiting this digital showcase where image and word meet.)</p>
     </div>
   </div>
 
@@ -150,7 +142,7 @@
       images[index].classList.add('active');
     }
 
-    // Cambia cada 4.5 segundos
+    // Cambio cada 4.5 segundos
     setInterval(nextImage, 4500);
   </script>
 </body>
