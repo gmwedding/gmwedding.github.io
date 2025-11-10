@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Carrusel con Traducción</title>
+<title>Carrusel con Texto Interactivo</title>
 <style>
-  /* RESET */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html, body {
@@ -14,7 +13,7 @@
     overflow: hidden;
     font-family: 'Poppins', sans-serif;
     color: #fff;
-    background-color: #000;
+    background: #000;
   }
 
   /* CARRUSEL */
@@ -37,26 +36,29 @@
 
   .carousel img.active { opacity: 1; }
 
-  /* CAPA CON TEXTO */
+  /* CAPA DE TEXTO */
   .overlay {
     position: relative;
     z-index: 2;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.35);
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.35);
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     padding: 3vh 5vw;
   }
 
-  .scroll-text {
-    position: absolute;
+  .scroll-box {
     width: 80%;
     max-width: 800px;
+    height: 85%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding-right: 10px;
+  }
+
+  .scroll-text {
     text-align: center;
-    animation: scrollText 45s linear infinite;
     font-size: clamp(0.9rem, 1.8vw, 1.2rem);
     line-height: 1.8em;
   }
@@ -70,23 +72,32 @@
     opacity: 0.85;
   }
 
-  @keyframes scrollText {
-    0% { top: 100%; }
-    100% { top: -180%; }
+  /* SCROLLBAR PERSONALIZADO */
+  .scroll-box::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scroll-box::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.4);
+    border-radius: 3px;
   }
 
-  /* RESPONSIVE */
   @media (max-width: 768px) {
-    .scroll-text {
+    .scroll-box {
       width: 90%;
+      height: 80%;
+    }
+    .scroll-text {
       font-size: clamp(0.85rem, 3vw, 1rem);
       line-height: 1.6em;
     }
   }
 
   @media (max-width: 480px) {
-    .scroll-text {
+    .scroll-box {
       width: 95%;
+      height: 75%;
+    }
+    .scroll-text {
       font-size: 0.9rem;
       line-height: 1.5em;
     }
@@ -96,54 +107,88 @@
 <body>
   <!-- CARRUSEL -->
   <div class="carousel" id="carousel">
-    <img src="https://picsum.photos/id/1011/1920/1080" class="active" alt="Imagen 1">
-    <img src="https://picsum.photos/id/1025/1920/1080" alt="Imagen 2">
-    <img src="https://picsum.photos/id/1040/1920/1080" alt="Imagen 3">
-    <img src="https://picsum.photos/id/1056/1920/1080" alt="Imagen 4">
-    <img src="https://picsum.photos/id/1069/1920/1080" alt="Imagen 5">
-    <img src="https://picsum.photos/id/1074/1920/1080" alt="Imagen 6">
-    <img src="https://picsum.photos/id/1081/1920/1080" alt="Imagen 7">
-    <img src="https://picsum.photos/id/1084/1920/1080" alt="Imagen 8">
-    <img src="https://picsum.photos/id/1085/1920/1080" alt="Imagen 9">
-    <img src="https://picsum.photos/id/1089/1920/1080" alt="Imagen 10">
+    <img src="https://picsum.photos/id/1011/1920/1080" class="active">
+    <img src="https://picsum.photos/id/1025/1920/1080">
+    <img src="https://picsum.photos/id/1040/1920/1080">
+    <img src="https://picsum.photos/id/1056/1920/1080">
+    <img src="https://picsum.photos/id/1069/1920/1080">
+    <img src="https://picsum.photos/id/1074/1920/1080">
+    <img src="https://picsum.photos/id/1081/1920/1080">
+    <img src="https://picsum.photos/id/1084/1920/1080">
+    <img src="https://picsum.photos/id/1085/1920/1080">
+    <img src="https://picsum.photos/id/1089/1920/1080">
   </div>
 
-  <!-- TEXTO CON TRADUCCIÓN INTERCALADA -->
+  <!-- TEXTO INTERACTIVO -->
   <div class="overlay">
-    <div class="scroll-text">
-      <p>Bienvenido a nuestro espacio visual, donde cada imagen cuenta una historia.</p>
-      <p class="translation">(Welcome to our visual space, where every image tells a story.)</p>
+    <div class="scroll-box" id="scrollBox">
+      <div class="scroll-text">
+        <p>Bienvenido a nuestro espacio visual, donde cada imagen cuenta una historia.</p>
+        <p class="translation">(Welcome to our visual space, where every image tells a story.)</p>
 
-      <p>Este carrusel infinito celebra la belleza del movimiento y la conexión.</p>
-      <p class="translation">(This infinite carousel celebrates the beauty of movement and connection.)</p>
+        <p>Este carrusel infinito celebra la belleza del movimiento y la conexión.</p>
+        <p class="translation">(This infinite carousel celebrates the beauty of movement and connection.)</p>
 
-      <p>Mientras las imágenes fluyen detrás, el texto desciende suavemente, como el tiempo.</p>
-      <p class="translation">(While the images flow behind, the text drifts softly downward, like time itself.)</p>
+        <p>Mientras las imágenes fluyen detrás, el texto desciende suavemente, como el tiempo.</p>
+        <p class="translation">(While the images flow behind, the text drifts softly downward, like time itself.)</p>
 
-      <p>Aquí podrías incluir la presentación de tu proyecto o una reflexión artística.</p>
-      <p class="translation">(Here you could include your project’s introduction or an artistic reflection.)</p>
+        <p>Aquí podrías incluir la presentación de tu proyecto o una reflexión artística.</p>
+        <p class="translation">(Here you could include your project’s introduction or an artistic reflection.)</p>
 
-      <p>Todo fluye, todo cambia, pero el mensaje permanece.</p>
-      <p class="translation">(Everything flows, everything changes, yet the message remains.)</p>
+        <p>Todo fluye, todo cambia, pero el mensaje permanece.</p>
+        <p class="translation">(Everything flows, everything changes, yet the message remains.)</p>
 
-      <p>Gracias por visitar esta muestra digital, donde imagen y palabra se encuentran.</p>
-      <p class="translation">(Thank you for visiting this digital showcase where image and word meet.)</p>
+        <p>Gracias por visitar esta muestra digital, donde imagen y palabra se encuentran.</p>
+        <p class="translation">(Thank you for visiting this digital showcase where image and word meet.)</p>
+      </div>
     </div>
   </div>
 
   <!-- SCRIPT -->
   <script>
+    // --- CARRUSEL ---
     const images = document.querySelectorAll('.carousel img');
     let index = 0;
-
     function nextImage() {
       images[index].classList.remove('active');
       index = (index + 1) % images.length;
       images[index].classList.add('active');
     }
-
-    // Cambio cada 4.5 segundos
     setInterval(nextImage, 4500);
+
+    // --- AUTO SCROLL + CONTROL MANUAL ---
+    const scrollBox = document.getElementById('scrollBox');
+    let autoScrollSpeed = 0.3; // velocidad (px por frame)
+    let isUserScrolling = false;
+    let userScrollTimeout;
+
+    function autoScroll() {
+      if (!isUserScrolling) {
+        scrollBox.scrollTop += autoScrollSpeed;
+        if (scrollBox.scrollTop >= scrollBox.scrollHeight - scrollBox.clientHeight) {
+          scrollBox.scrollTop = 0; // reinicia al inicio
+        }
+      }
+      requestAnimationFrame(autoScroll);
+    }
+
+    // Detecta interacción del usuario
+    scrollBox.addEventListener('wheel', () => {
+      isUserScrolling = true;
+      clearTimeout(userScrollTimeout);
+      userScrollTimeout = setTimeout(() => (isUserScrolling = false), 2000);
+    });
+
+    scrollBox.addEventListener('touchstart', () => {
+      isUserScrolling = true;
+      clearTimeout(userScrollTimeout);
+    });
+
+    scrollBox.addEventListener('touchend', () => {
+      userScrollTimeout = setTimeout(() => (isUserScrolling = false), 2000);
+    });
+
+    autoScroll();
   </script>
 </body>
 </html>
