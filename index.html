@@ -1,1 +1,245 @@
-Espera a la sorpresa...
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Carrusel interactivo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    background: #000;
+  }
+
+  /* CARRUSEL */
+  .carousel {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .carousel img {
+    position: absolute;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    top: 0; left: 0;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+  }
+
+  .carousel img.active { opacity: 1; }
+
+  /* CAPA DE TEXTO */
+  .overlay {
+    position: relative;
+    z-index: 2;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3vh 5vw;
+  }
+
+  .scroll-box {
+    width: 80%;
+    max-width: 800px;
+    height: 85%;
+    overflow-y: auto;
+    overflow-x: hidden; /* 🔹 Oculta scroll horizontal */
+    scroll-behavior: smooth;
+    padding-right: 10px;
+  }
+
+  .scroll-text {
+    text-align: center;
+    font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+    line-height: 1.8em;
+  }
+
+  .scroll-text p { margin-bottom: 0.6em; }
+  .translation { font-style: italic; opacity: 0.85; }
+
+  /* SCROLLBAR */
+  .scroll-box::-webkit-scrollbar {
+  width: 0; /* oculta la barra pero conserva el scroll */
+    background: transparent;
+  }
+  .scroll-box {
+    scrollbar-width: none;       /* Firefox */
+    -ms-overflow-style: none;    /* IE y Edge antiguos */
+  }
+
+  @media (max-width: 768px) {
+    .scroll-box { width: 90%; height: 80%; }
+    .scroll-text { font-size: clamp(0.85rem, 3vw, 1rem); line-height: 1.6em; }
+  }
+
+  @media (max-width: 480px) {
+    .scroll-box { width: 95%; height: 75%; }
+    .scroll-text { font-size: 0.9rem; line-height: 1.5em; }
+  }
+</style>
+</head>
+<body>
+  <!-- CARRUSEL -->
+  <div class="carousel" id="carousel">
+    <img src="files/1.jpg" class="active">
+    <img src="files/2.jpg">
+    <img src="files/3.jpg">
+    <img src="files/4.jpg">
+    <img src="files/5.jpg">
+    <img src="files/6.jpg">
+    <img src="files/7.jpg">
+    <img src="files/9.jpg">
+    <img src="files/12.jpg">
+    <img src="files/13.jpg">
+    <img src="files/14.jpg">
+    <img src="files/16.jpg">
+    <img src="files/17.jpg">
+    <img src="files/18.jpg">
+    <img src="files/19.jpg">
+  </div>
+
+  <!-- TEXTO -->
+  <div class="overlay">
+    <div class="scroll-box" id="scrollBox">
+      <div class="scroll-text">
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <p>Wise men say</p>
+        <p class="translation">(Los sabios dicen)</p><br>
+
+        <p>Only fools rush in</p>
+        <p class="translation">(Que solo los tontos se precipitan.)</p><br>
+
+        <p>But I can't help</p>
+        <p class="translation">(Pero yo no puedo evitar)</p><br>
+
+        <p>Falling in love with you</p>
+        <p class="translation">(Enamorarme de ti.)</p><br>
+
+        <p>Shall I stay?</p>
+        <p class="translation">(Debería quedarme?)</p><br>
+
+        <p>Would it be a sin?</p>
+        <p class="translation">(Sería un pecado)</p><br>
+
+        <p>If I can't help</p>
+        <p class="translation">(Si no puedo evitar)</p><br>
+
+        <p>Falling in love with you</p>
+        <p class="translation">(Enamorarme de ti.)</p><br>
+
+        <p>Like a river flows</p>
+        <p class="translation">(Como un río que fluye)</p><br>
+
+        <p>Surely to the sea</p>
+        <p class="translation">(Seguro hacia el mar.)</p><br>
+
+        <p>Darling, so it goes</p>
+        <p class="translation">(Cariño, así es)</p><br>
+
+        <p>Some things are meant to be.</p>
+        <p class="translation">(Algunas cosas están destinadas a ser.)</p><br>
+
+        <p>Take my hand</p>
+        <p class="translation">(Toma mi mano.)</p><br>
+
+        <p>Take my whole life too</p>
+        <p class="translation">(Toma mi vida entera también.)</p><br>
+
+        <p>For I can't help</p>
+        <p class="translation">(Que no puedo evitar)</p><br>
+
+        <p>Falling in love with you</p>
+        <p class="translation">(Enamorarme de ti.)</p><br>
+
+        <p>Like a river flows</p>
+        <p class="translation">(Como un río que fluye)</p><br>
+
+        <p>Surely to the sea</p>
+        <p class="translation">(Seguro hacia el mar.)</p><br>
+
+        <p>Darling, so it goes</p>
+        <p class="translation">(Cariño, así es)</p><br>
+
+        <p>Some things are meant to be.</p>
+        <p class="translation">(Algunas cosas están destinadas a ser.)</p><br>
+
+        <p>Take my hand</p>
+        <p class="translation">(Toma mi mano.)</p><br>
+
+        <p>Take my whole life too</p>
+        <p class="translation">(Toma mi vida entera también.)</p><br>
+
+        <p>For I can't help</p>
+        <p class="translation">(Que no puedo evitar)</p><br>
+
+        <p>Falling in love with you</p>
+        <p class="translation">(Enamorarme de ti.)</p><br>
+
+        <p>For I can't help</p>
+        <p class="translation">(Que no puedo evitar)</p><br>
+
+        <p>Falling in love with you</p>
+        <p class="translation">(Enamorarme de ti.)</p><br>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    /* --- CARRUSEL --- */
+    const images = document.querySelectorAll('.carousel img');
+    let index = 0;
+    function nextImage() {
+      images[index].classList.remove('active');
+      index = (index + 1) % images.length;
+      images[index].classList.add('active');
+    }
+    setInterval(nextImage, 7000); // Cambia cada 7s
+
+    /* --- AUTO SCROLL CONTROLADO --- */
+    const scrollBox = document.getElementById('scrollBox');
+    let autoScrollSpeed = 1.18;
+    let frameCounter = 0;
+    let isUserScrolling = false;
+    let userScrollTimeout;
+
+    function autoScroll() {
+      if (!isUserScrolling) {
+        frameCounter++;
+
+        if (frameCounter % 5 === 0) { // ← AJUSTA PARA MÁS LENTO O MÁS RÁPIDO
+          scrollBox.scrollTop += autoScrollSpeed;
+        }
+
+        if (scrollBox.scrollTop >= scrollBox.scrollHeight - scrollBox.clientHeight) {
+          scrollBox.scrollTop = 0;
+        }
+      }
+
+      requestAnimationFrame(autoScroll);
+    }
+
+    function pauseAutoScroll() {
+      isUserScrolling = true;
+      clearTimeout(userScrollTimeout);
+      userScrollTimeout = setTimeout(() => (isUserScrolling = false), 500);
+    }
+
+    scrollBox.addEventListener('wheel', pauseAutoScroll);
+    scrollBox.addEventListener('touchstart', pauseAutoScroll);
+    scrollBox.addEventListener('touchend', pauseAutoScroll);
+
+    autoScroll();
+  </script>
+</body>
+</html>
